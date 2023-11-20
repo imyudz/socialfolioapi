@@ -9,5 +9,4 @@ public class SocialfolioapiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SocialfolioapiApplication.class, args);
 	}
-	
 }
