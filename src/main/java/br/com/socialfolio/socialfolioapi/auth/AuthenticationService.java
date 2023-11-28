@@ -33,6 +33,11 @@ public class AuthenticationService {
                 .state(request.getState())
                 .city(request.getCity())
                 .coverImg(request.getCoverImg())
+                .employee(request.getEmployee())
+                .workplace(request.getWorkplace())
+                .job_Level(request.getJob_Level())
+                .recent_Education(request.getRecent_Education())
+                .current_Company(request.getCurrent_Company())
                 .role(Role.USER)
                 .build();
         repository.save(user);

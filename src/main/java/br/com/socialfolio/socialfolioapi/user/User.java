@@ -46,6 +46,11 @@ public class User implements UserDetails {
     private String state;
     private String city;
     private String coverImg;
+    private Boolean employee;
+    private String workplace;
+    private String job_Level;
+    private String recent_Education;
+    private String  current_Company;
 
     @Enumerated(EnumType.STRING) //Define que Ã© um enum e pega os valores de string deles
     private Role role; // cargo
