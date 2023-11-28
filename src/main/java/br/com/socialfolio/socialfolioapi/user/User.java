@@ -1,6 +1,6 @@
 package br.com.socialfolio.socialfolioapi.user;
 
-//Notações Lombok para reduzir código boilerplate (repetitivo)
+//NotaÃ§Ãµes Lombok para reduzir cÃ³digo boilerplate (repetitivo)
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,6 +11,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.sql.Date;
 import java.util.Collection;
 import java.util.List;
 
@@ -20,8 +21,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 
-//Hibernate Annotations (configurações de ORM - Banco de Dados)
-@Entity //Ao utilizar o @Entity, você está dizendo ao Hibernate para mapear aquela classe para uma tabela no banco de dados.
+//Hibernate Annotations (configuraÃ§Ãµes de ORM - Banco de Dados)
+@Entity //Ao utilizar o @Entity, vocÃª estÃ¡ dizendo ao Hibernate para mapear aquela classe para uma tabela no banco de dados.
 @Table(name="_user") //nome da tabela no bd
 
 //Aqui, pode ser implementada a interface UserDetails diretamente do spring security
@@ -30,18 +31,23 @@ import java.util.List;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue //gera um valor automático para esse id
+    @GeneratedValue //gera um valor automÃ¡tico para esse id
     private Integer id;
 
     private String firstName;
-
     private String lastName;
-
     private String email;
-
     private String password;
+    private String socialName;
+    private Date dtNasc;
+    private String phone;
+    private String avatar;
+    private String description;
+    private String state;
+    private String city;
+    private String coverImg;
 
-    @Enumerated(EnumType.STRING) //Define que é um enum e pega os valores de string deles
+    @Enumerated(EnumType.STRING) //Define que Ã© um enum e pega os valores de string deles
     private Role role; // cargo
 
     @Override

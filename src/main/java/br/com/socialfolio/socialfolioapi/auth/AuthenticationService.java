@@ -25,6 +25,14 @@ public class AuthenticationService {
                 .lastName(request.getLastName())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
+                .socialName(request.getSocialName())
+                .dtNasc(request.getDtNasc())
+                .phone(request.getPhone())
+                .avatar(request.getAvatar())
+                .description(request.getDescription())
+                .state(request.getState())
+                .city(request.getCity())
+                .coverImg(request.getCoverImg())
                 .role(Role.USER)
                 .build();
         repository.save(user);
