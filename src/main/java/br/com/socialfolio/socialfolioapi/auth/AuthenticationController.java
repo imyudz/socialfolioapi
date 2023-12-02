@@ -25,7 +25,9 @@ public class AuthenticationController {
             return ResponseEntity.ok(service.register(request));
 
         }catch(Exception e){
-            return ResponseEntity.badRequest().body(AuthenticationResponse.builder().errorMessage("Erro ao registrar usuário: Email já foi registrado").build());
+            var erro = AuthenticationResponse.builder().errorMessage("Erro ao registrar usuário: Email já foi registrado").build();
+            System.out.println("Erro ao salvar dado: " + erro);
+            return ResponseEntity.badRequest().body(erro);
 
         }
 
@@ -35,6 +37,7 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody AuthenticationRequest request
     ) {
+        System.out.print("teste");
         return ResponseEntity.ok(service.authenticate(request));
     }
 
