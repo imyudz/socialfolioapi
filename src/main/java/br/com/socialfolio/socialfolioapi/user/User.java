@@ -48,7 +48,6 @@ public class User implements UserDetails {
     private String coverImg;
     private Boolean employee;
     private String workplace;
-    private String job_Level;
     private String recent_Education;
     private String  current_Company;
 
