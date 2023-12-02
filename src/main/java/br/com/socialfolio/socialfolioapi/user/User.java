@@ -23,8 +23,8 @@ import java.util.List;
 
 //Hibernate Annotations (configuraÃ§Ãµes de ORM - Banco de Dados)
 @Entity //Ao utilizar o @Entity, vocÃª estÃ¡ dizendo ao Hibernate para mapear aquela classe para uma tabela no banco de dados.
-@Table(name="_user") //nome da tabela no bd
-
+@Table(name="_user", uniqueConstraints= {@UniqueConstraint (columnNames= {"email"})}) //nome da tabela no bd
+   
 //Aqui, pode ser implementada a interface UserDetails diretamente do spring security
 //Ou pode ser extendida a classe User do spring security
 
@@ -33,7 +33,7 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue //gera um valor automÃ¡tico para esse id
     private Integer id;
-
+    
     private String firstName;
     private String lastName;
     private String email;

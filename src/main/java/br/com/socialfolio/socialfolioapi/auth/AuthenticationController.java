@@ -1,5 +1,6 @@
 package br.com.socialfolio.socialfolioapi.auth;
 
+import br.com.socialfolio.socialfolioapi.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,14 +13,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
 public class AuthenticationController {
-
+    
+    private final UserRepository repository;
     private final AuthenticationService service;
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
             @ModelAttribute RegisterRequest request
     ) {
-        return ResponseEntity.ok(service.register(request));
+        try{
+            return ResponseEntity.ok(service.register(request));
+
+        }catch(Exception e){
+            return ResponseEntity.badRequest().body(AuthenticationResponse.builder().errorMessage("Erro ao registrar usuário: Email já foi registrado").build());
+
+        }
+
     }
 
     @PostMapping("/authenticate")

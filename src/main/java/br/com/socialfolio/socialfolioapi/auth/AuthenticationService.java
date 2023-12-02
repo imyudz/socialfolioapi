@@ -11,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.UUID;
 
 import org.springframework.security.authentication.AuthenticationManager;
@@ -47,11 +48,11 @@ public class AuthenticationService {
                                 .socialName(request.getSocialName())
                                 .dtNasc(Date.valueOf(request.getDtNasc()))
                                 .phone(request.getPhone())
-                                .avatar(avatarImgPath.toString())
+                                //.avatar(avatarImgPath.toString())
                                 .description(request.getDescription())
                                 .state(request.getState())
                                 .city(request.getCity())
-                                .coverImg(coverImgPath.toString())
+                                //.coverImg(coverImgPath.toString())
                                 .employee(request.getEmployee())
                                 .workplace(request.getWorkplace())
                                 .recent_Education(request.getRecent_Education())
@@ -64,9 +65,10 @@ public class AuthenticationService {
                         return AuthenticationResponse.builder()
                                 .token(jwtToken)
                                 .build();
-        } catch (IOException e) {
-                System.err.println("Erro ao gravar imagem" + e.getMessage());
-                throw new RuntimeException("Erro ao gravar imagem" + e.getMessage());
+        } catch (Exception e) {
+                System.err.println("Erro ao gravar imagem " + e.getMessage());
+
+                throw new RuntimeException("Erro ao gravar imagem " + e.getMessage());
         }
         }
 
