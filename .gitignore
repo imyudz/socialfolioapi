@@ -35,5 +35,5 @@ build/
 ### VS Code ###
 .vscode/
 
-### Apllication.yaml ###
-*application.yaml
+### Arquivo .env ###
+*.env

@@ -50,6 +50,7 @@ public class User implements UserDetails {
     private String workplace;
     private String recent_Education;
     private String  current_Company;
+    private String profission;
 
     @Enumerated(EnumType.STRING) //Define que Ã© um enum e pega os valores de string deles
     private Role role; // cargo
