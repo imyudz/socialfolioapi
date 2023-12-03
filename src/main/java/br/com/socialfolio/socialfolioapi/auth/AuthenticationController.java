@@ -21,14 +21,17 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> register(
             @ModelAttribute RegisterRequest request
     ) {
-        try{
+        try {
             return ResponseEntity.ok(service.register(request));
 
-        }catch(Exception e){
-            var erro = AuthenticationResponse.builder().errorMessage("Erro ao registrar usuário: Email já foi registrado").build();
+        } catch(Exception e) {
+            var erro = AuthenticationResponse.builder()  
+                        .errorMessage("Erro ao registrar usuário: Email já foi registrado")
+                        .build();
             System.out.println("Erro ao salvar dado: " + erro);
-            return ResponseEntity.badRequest().body(erro);
-
+            return ResponseEntity
+                        .badRequest()
+                        .body(erro);
         }
 
     }
