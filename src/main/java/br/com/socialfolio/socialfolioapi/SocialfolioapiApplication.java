@@ -33,6 +33,7 @@ public class SocialfolioapiApplication implements CommandLineRunner{
         
         Files.walk(pasta)
             .filter(Files::isRegularFile)
+			.filter(path -> !path.toString().toLowerCase().endsWith(".txt"))
             .map(Path::toFile)
             .forEach(File::delete);
         

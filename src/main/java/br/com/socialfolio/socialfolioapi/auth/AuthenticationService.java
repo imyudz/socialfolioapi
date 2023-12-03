@@ -6,12 +6,11 @@ import br.com.socialfolio.socialfolioapi.user.User;
 import br.com.socialfolio.socialfolioapi.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 
-import java.io.IOException;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Date;
-import java.sql.SQLException;
 import java.util.UUID;
 
 import org.springframework.security.authentication.AuthenticationManager;
