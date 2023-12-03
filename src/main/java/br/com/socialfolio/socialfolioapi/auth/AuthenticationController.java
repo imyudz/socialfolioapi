@@ -1,6 +1,5 @@
 package br.com.socialfolio.socialfolioapi.auth;
 
-import br.com.socialfolio.socialfolioapi.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AuthenticationController {
     
-    private final UserRepository repository;
     private final AuthenticationService service;
 
     @PostMapping("/register")
