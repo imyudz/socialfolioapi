@@ -3,6 +3,8 @@ package br.com.socialfolio.socialfolioapi.user;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 
 import org.springframework.stereotype.Service;
@@ -14,6 +16,33 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    public List<UserInfoResponse> extractUserDetails() {
+        var users = userRepository.findAll();
+        List<UserInfoResponse> userInfos = new ArrayList<>();
+
+        for (User user : users) {
+            byte[] profileImgBytes = null;
+            String profileImgPath = user.getAvatar();
+            if (profileImgPath != null) {
+                try {
+                    profileImgBytes = Files.readAllBytes(Paths.get(profileImgPath));
+                } catch (IOException e) {  
+                    throw new RuntimeException(e);
+                }
+            }
+
+            UserInfoResponse userInfo = UserInfoResponse.builder()
+                .userId(user.getId())
+                .name(user.getFirstName() + " " + user.getLastName())
+                .avatar(profileImgBytes)
+                .build();
+
+            userInfos.add(userInfo);
+        }
+
+    return userInfos;
+    }
+    
     public UserInfoResponse extractUserDetails(Integer userId) {
         byte[] coverImgBytes = null;
         byte[] profileImgBytes = null;

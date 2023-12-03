@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.socialfolio.socialfolioapi.user.UserInfoResponse;
 import br.com.socialfolio.socialfolioapi.user.UserService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -31,6 +32,18 @@ public class DemoController {
         System.out.println("ROTA ACESSADA: /api/v1/demo/userinfo/" + userId);
         try {
             var userInfo = userService.extractUserDetails(userId);
+            return ResponseEntity.ok(userInfo);
+        } catch (Exception e) {
+            System.out.println("Erro ao obter dados: " + e);
+            return ResponseEntity.badRequest().build();
+        }
+    }
+    @CrossOrigin
+    @GetMapping("/usersinfo")
+    public ResponseEntity<List<UserInfoResponse>> getAllUsersId(){
+        System.out.println("ROTA ACESSADA: /api/v1/demo/usersinfo");
+        try {
+            var userInfo = userService.extractUserDetails();
             return ResponseEntity.ok(userInfo);
         } catch (Exception e) {
             System.out.println("Erro ao obter dados: " + e);
