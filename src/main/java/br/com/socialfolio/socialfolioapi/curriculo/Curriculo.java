@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 public class Curriculo {
 
     @Id
-    @GeneratedValue //gera um valor automÃ¡tico para esse id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //gera um valor automÃ¡tico para esse id
     private Integer id;
     private String about;
     private String formation;

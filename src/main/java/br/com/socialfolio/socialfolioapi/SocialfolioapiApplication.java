@@ -22,7 +22,7 @@ public class SocialfolioapiApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		//limparPasta("src/main/resources/static/uploads");
+		limparPasta("src/main/resources/static/uploads");
 	}
 
 	private void limparPasta(String caminhoPasta) throws IOException {
