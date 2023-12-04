@@ -33,7 +33,7 @@ import java.util.List;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue //gera um valor automÃ¡tico para esse id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //gera um valor automÃ¡tico para esse id
     private Integer id;
     
     private String firstName;
