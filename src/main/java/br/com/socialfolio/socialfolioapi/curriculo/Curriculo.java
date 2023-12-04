@@ -1,5 +1,7 @@
 package br.com.socialfolio.socialfolioapi.curriculo;
 
+import br.com.socialfolio.socialfolioapi.user.User;
+
 //NotaÃ§Ãµes Lombok para reduzir cÃ³digo boilerplate (repetitivo)
 
 import jakarta.persistence.*;
@@ -27,8 +29,6 @@ public class Curriculo {
     @Id
     @GeneratedValue //gera um valor automÃ¡tico para esse id
     private Integer id;
-
-  
     private String about;
     private String formation;
     private String experience;
@@ -36,9 +36,9 @@ public class Curriculo {
     private String skill;
     private String knowledge;
     private String language;
-    private String avatar;
-
-    // @Enumerated(EnumType.STRING) //Define que Ã© um enum e pega os valores de string deles
-    // private Role role; // cargo
+    
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fkUser", unique = true)
+    private User fkUser;
     
 }

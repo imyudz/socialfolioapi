@@ -6,12 +6,11 @@ import br.com.socialfolio.socialfolioapi.user.User;
 import br.com.socialfolio.socialfolioapi.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 
-import java.io.IOException;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Date;
-import java.sql.SQLException;
 import java.util.UUID;
 
 import org.springframework.security.authentication.AuthenticationManager;
@@ -37,9 +36,6 @@ public class AuthenticationService {
 
                 //Gravando imagem no caminho
                 try {
-                        Files.write(coverImgPath, request.getCoverImg().getBytes());
-                        Files.write(avatarImgPath, request.getAvatar().getBytes());
-
                         var user = User.builder()
                                 .firstName(request.getFirstName())
                                 .lastName(request.getLastName())
@@ -57,9 +53,13 @@ public class AuthenticationService {
                                 .workplace(request.getWorkplace())
                                 .recent_Education(request.getRecent_Education())
                                 .current_Company(request.getCurrent_Company())
+                                .profission(request.getProfission())
                                 .role(Role.USER)
                                 .build();
                         repository.save(user);
+
+                        Files.write(coverImgPath, request.getCoverImg().getBytes());
+                        Files.write(avatarImgPath, request.getAvatar().getBytes());
 
                         var jwtToken = jwtService.generateToken(user);
                         return AuthenticationResponse.builder()
@@ -85,6 +85,7 @@ public class AuthenticationService {
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
+                .userId(user.getId())
                 .build();
-    }
+        }
 }

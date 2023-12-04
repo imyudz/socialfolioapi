@@ -11,6 +11,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import br.com.socialfolio.socialfolioapi.curriculo.Curriculo;
+
 import java.sql.Date;
 import java.util.Collection;
 import java.util.List;
@@ -50,6 +52,10 @@ public class User implements UserDetails {
     private String workplace;
     private String recent_Education;
     private String  current_Company;
+    private String profission;
+
+    @OneToOne(mappedBy = "fkUser", cascade = CascadeType.ALL)
+    private Curriculo curriculo;
 
     @Enumerated(EnumType.STRING) //Define que Ã© um enum e pega os valores de string deles
     private Role role; // cargo
