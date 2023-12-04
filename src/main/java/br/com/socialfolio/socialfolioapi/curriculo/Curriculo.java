@@ -27,14 +27,35 @@ import lombok.NoArgsConstructor;
 public class Curriculo {
 
     @Id
-    @GeneratedValue //gera um valor automÃ¡tico para esse id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //gera um valor automÃ¡tico para esse id
     private Integer id;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String about;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String formation;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String experience;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String contact;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String skill;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String knowledge;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String language;
     
     @OneToOne(fetch = FetchType.LAZY)
