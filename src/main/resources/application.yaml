@@ -1,19 +1,30 @@
+management:
+    endpoints: 
+        web:
+            exposure:
+                include: '*'
+    info:
+        env:
+            enabled: true
+info:
+    application:
+        name: socialFolio-API
+        description: API for SocialFolio media.
+        author: Victor Henri
+        version: '@socialFolio-API.version@1.0.0'
 spring:
-  datasource:
-    url: ${DATABASE_URL}
-    username: ${DATABASE_USERNAME}
-    password: ${DATABASE_PASSWORD}
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-    database: mysql
-    database-platform: org.hibernate.dialect.MySQLDialect
-  servlet:
-    multipart:
-      max-file-size: 10MB
-      max-request-size: 10MB
+    profiles:
+        active: ${spring_profile}
+    jpa:
+        hibernate:
+            ddl-auto: update
+        show-sql: true
+        properties:
+            hibernate:
+                format_sql: true
+        database: mysql
+        database-platform: org.hibernate.dialect.MySQLDialect
+    servlet:
+        multipart:
+            max-file-size: 10MB
+            max-request-size: 10MB

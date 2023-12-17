@@ -8,7 +8,6 @@ import java.nio.file.Paths;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import io.github.cdimascio.dotenv.Dotenv;
 
 import java.io.IOException;
 
@@ -16,7 +15,6 @@ import java.io.IOException;
 public class SocialfolioapiApplication implements CommandLineRunner{
 
 	public static void main(String[] args) { 
-        Dotenv dotenv = Dotenv.configure().load();
 		SpringApplication.run(SocialfolioapiApplication.class, args);
 	}
 
