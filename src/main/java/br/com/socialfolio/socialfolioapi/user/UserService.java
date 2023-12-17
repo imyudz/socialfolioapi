@@ -28,8 +28,10 @@ public class UserService {
             String profileImgPath = user.getAvatar();
             if (profileImgPath != null) {
                 try {
-                    profileImgBytes = Files.readAllBytes(Paths.get(profileImgPath));
-                } catch (IOException e) {  
+                    profileImgBytes = firebaseStorageService.getFileFromFirebase(profileImgPath);
+                } catch (Exception e) {  
+                    e.printStackTrace();
+                    System.err.println("Erro ao buscar imagem de avatar: " + e);
                     throw new RuntimeException(e);
                 }
             }
