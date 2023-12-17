@@ -8,6 +8,8 @@ import java.util.List;
 
 
 import org.springframework.stereotype.Service;
+
+import br.com.socialfolio.socialfolioapi.firebase.FirebaseStorageService;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -15,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final FirebaseStorageService firebaseStorageService;
 
     public List<UserInfoResponse> extractUserDetails() {
         var users = userRepository.findAll();
@@ -52,17 +55,18 @@ public class UserService {
 
         if (coverImgPath != null) {
             try {
-                coverImgBytes = Files.readAllBytes(Paths.get(coverImgPath));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                coverImgBytes = firebaseStorageService.getFileFromFirebase(coverImgPath);
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.err.println("Erro ao buscar imagem de capa: " + e);
             }
         }
-
         if (profileImgPath != null) {
             try {
-                profileImgBytes = Files.readAllBytes(Paths.get(profileImgPath));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                profileImgBytes = firebaseStorageService.getFileFromFirebase(profileImgPath);
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.err.println("Erro ao buscar imagem de avatar: " + e);
             }
         }
 
